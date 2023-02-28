@@ -3,7 +3,7 @@
 # The following symbol is for VSCode interactive plot test
 # %%
 import matplotlib.pyplot as plot
-import numpy as n
+import numpy as np
 import plotly.io as pio
 
 # %%
@@ -39,7 +39,7 @@ while i<1000 and (abs(PF1x(x_point, y_point))>0.00001 or abs(PF1y(x_point, y_poi
     print("i=", i)
     step_x.append(x_point)
     step_y.append(y_point)
-    step_z.append(F(x_point, y_point))
+    step_z.append(F1(x_point, y_point))
     
     x_point = x_point - lr*PF1x(x_point, y_point)
     y_point = y_point - lr*PF1y(x_point, y_point)
@@ -48,7 +48,7 @@ while i<1000 and (abs(PF1x(x_point, y_point))>0.00001 or abs(PF1y(x_point, y_poi
 #not giving figsiz, plot will find a fittable size
 fig = plot.figure()
 #get current Axes instance
-ax=fig.gca(projection='3d')
+ax=fig.add_subplot(projection='3d')
 ax.set_zlim(-150,150)
 ax.set_xlim(-5, 5)
 ax.set_ylim(-5, 5)
@@ -123,7 +123,7 @@ for t in np.arange(0, 6.26, 0.1):
 figgo.frames=frames
 
 figgo.show()
-pio.write_html(figgo, './html_output/goplot-3degree.html', auto_play=True)
+pio.write_html(figgo, './goplot-3degree.html', auto_play=True)
 input("Press Enter to continue...")
 
 
